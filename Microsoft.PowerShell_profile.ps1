@@ -15,7 +15,7 @@ function go {
 function dev {
     switch ($args[0]) {
         "sponty"  {
-            wt -d C:\Users\uebno\Development\sponty\frontend `; split-pane -H -d C:\Users\uebno\Development\sponty\backend
+            wt -d C:\Users\uebno\Development\sponty\frontend -p $args[0] `; split-pane -H -d C:\Users\uebno\Development\sponty\backend
             break;
         }
         default {"development environment not defined"; break}
@@ -29,5 +29,8 @@ function docker-destroy-all {docker-stop-all; docker-rm-all}
 Import-Module posh-git
 Import-Module oh-my-posh
 Set-Theme Paradox
-
 $ThemeSettings.Colors.DriveForegroundColor = 'White'
+
+Import-Module PSReadLine
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
